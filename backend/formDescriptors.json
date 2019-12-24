@@ -73,6 +73,56 @@
                     ] 
                 } 
             ] 
+        },
+        {
+            "title":"فرم دیگر دیگر" , 
+            "id" : "12" , 
+            "fields" : [
+                {
+                    "name":"First_Name" , 
+                    "title" : "نام" , 
+                    "type" : "Text",
+                    "required":true
+                } , 
+                {
+                    "name":"Loc" , 
+                    "title" : "مکان شما" , 
+                    "type" : "Location",
+                    "required":false
+                } , 
+                {
+                    "name":"loco" , 
+                    "title" : "حداکثر زمان دریافت درخواست " , 
+                    "type" : "Date",
+                    "required":true
+                } , 
+                {
+                    "name":"Request_Type" , 
+                    "title" : "نوع درخواست" , 
+                    "type" : "Text" , 
+                    "options" : [
+                        {"label" : "کمک" , "value" : "Help"}, 
+                        {"label" : "اطلاعات" , "value" : "Information"} 
+                    ] ,
+                    "required":true
+
+                } , 
+                {
+                    "name":"Requesta_Type" , 
+                    "title" : "تعداد درخواست" , 
+                    "type" : "Number"
+
+                } , 
+                {
+                    "name":"Base_Location" , 
+                    "title" : "مکان پایگاه" , 
+                    "type" : "Location" , 
+                    "options" : [
+                        {"label" : "پایگاه اول" , "value" : {"lat" : "1.2" , "long": "3.2"} }, 
+                        {"label" : "پایگاه دوم" , "value" : {"lat" : "2.3" , "long" : "1.434" }}
+                    ] 
+                } 
+            ] 
         }
     ] 
 }

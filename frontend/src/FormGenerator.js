@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from "react";
-import Select from "react-select";
+import BaseSelect from "react-select";
 import Form from "react-jsonschema-form";
+import FixRequiredSelect from "./FixRequiredSelect";
 
 import {MapContainer} from './MapContainer'; 
 let input = '{ "title":"A smaple form" , "id" : "1234" , "fields" : [ { "name":"First_Name" , "title" : "First Name" , "type" : "Text", "required":true } , { "name":"Loc" , "title" : "Your Location" , "type" : "Location", "required":false } , { "name":"Request_Type" , "title" : "Request Type" , "type" : "Text" , "options" : [ {"label" : "Help" , "value" : "Help"}, {"label" : "Info" , "value" : "Information"} ] } , { "name":"Base_Location" , "title" : "Base Location" , "type" : "Location" ,"required": "true", "options" : [ {"label" : "Base1" , "value" : {"lat" : "1.2" , "long": "3.2"}}, {"label" : "Base2" , "value" : {"lat" : "2.3" , "long" : "1.434" }} ] } ] }';
@@ -9,7 +10,17 @@ let object_input = JSON.parse(input);
 let converted_schema = schemaMaker(object_input);
 let schema = converted_schema;
 
-
+const Select = props => {
+    console.log("new select props!!!!" , props);
+    return (
+    <FixRequiredSelect
+      {...props}
+      SelectComponent={BaseSelect}
+      options={props.options }
+    />
+  );
+    }
+  
 
 const uiSchema = uiSchemaMaker(object_input)
 
@@ -111,8 +122,9 @@ class DropDown extends Component{
    return(  
    // <h3>{this.props.name}</h3>
    <div> 
-     <h3>{schema.properties[this.props.name].title}</h3>
+     <p>{schema.properties[this.props.name].title}{this.props.required ? "*" : " "}</p>
         <Select 
+        required= {this.props.required}
         options={this.options}
         value={selectedOption}
    onChange={this.ChangeHandler}>
@@ -152,7 +164,7 @@ class _Map extends React.Component {
 
       return (
         <div>
-        <h3>{schema.properties[this.props.name].title}</h3>
+        <p>{schema.properties[this.props.name].title}</p>
 
           <MapContainer onClick = {this._onClick} 
           lat= {this.state.lat}

@@ -4,7 +4,14 @@ import Select from "react-select";
 import Form from "react-jsonschema-form";
 
 import {MapContainer} from './MapContainer'; 
+let input = '{ "title":"A smaple form" , "id" : "1234" , "fields" : [ { "name":"First_Name" , "title" : "First Name" , "type" : "Text", "required":true } , { "name":"Loc" , "title" : "Your Location" , "type" : "Location", "required":false } , { "name":"Request_Type" , "title" : "Request Type" , "type" : "Text" , "options" : [ {"label" : "Help" , "value" : "Help"}, {"label" : "Info" , "value" : "Information"} ] } , { "name":"Base_Location" , "title" : "Base Location" , "type" : "Location" ,"required": "true", "options" : [ {"label" : "Base1" , "value" : {"lat" : "1.2" , "long": "3.2"}}, {"label" : "Base2" , "value" : {"lat" : "2.3" , "long" : "1.434" }} ] } ] }';
+let object_input = JSON.parse(input);
+let converted_schema = schemaMaker(object_input);
+let schema = converted_schema;
 
+
+
+const uiSchema = uiSchemaMaker(object_input)
 
 function type_finder(raw_type,options){
   if(options !== undefined)
@@ -69,14 +76,7 @@ function schemaMaker(raw_json){
     }
     return output_schema;
 }
-let input = '{ "title":"A smaple form" , "id" : "1234" , "fields" : [ { "name":"First_Name" , "title" : "First Name" , "type" : "Text", "required":true } , { "name":"Loc" , "title" : "Your Location" , "type" : "Location", "required":false } , { "name":"Request_Type" , "title" : "Request Type" , "type" : "Text" , "options" : [ {"label" : "Help" , "value" : "Help"}, {"label" : "Info" , "value" : "Information"} ] } , { "name":"Base_Location" , "title" : "Base Location" , "type" : "Location" ,"required": "true", "options" : [ {"label" : "Base1" , "value" : {"lat" : "1.2" , "long": "3.2"}}, {"label" : "Base2" , "value" : {"lat" : "2.3" , "long" : "1.434" }} ] } ] }';
-let object_input = JSON.parse(input);
-let converted_schema = schemaMaker(object_input);
-const schema = converted_schema;
 
-
-
-const uiSchema = uiSchemaMaker(object_input)
 class DropDown extends Component{
   constructor(props){
     super(props);
@@ -172,11 +172,17 @@ class myForm extends React.Component {
     constructor(props)
     {
         super(props);
+        let oo = props.objectInput;
+        object_input = oo;
+        converted_schema = schemaMaker(object_input);
+        schema = converted_schema;
 
+        console.log("input  " ,input);
         this.state = {
             input_object: this.props.objectInput
         }
     }
+
     _onSubmit = ({formData}, e) => {
         console.log("Data submitted: ",  formData);
         this.props.onSubmit(formData);

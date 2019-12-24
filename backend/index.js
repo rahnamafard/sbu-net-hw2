@@ -11,8 +11,8 @@ app.use(cors());
 var redis = require('redis');
 var client = redis.createClient(); //creates a new client
 
-client.on('connect', function() {
-    console.log('connected');
+client.on('error', function(err) {
+    console.log('ERROR REDIS : ' + err);
 });
 
 let forms;

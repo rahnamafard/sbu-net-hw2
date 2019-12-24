@@ -8,6 +8,13 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(cors());
 
+var redis = require('redis');
+var client = redis.createClient(); //creates a new client
+
+client.on('connect', function() {
+    console.log('connected');
+});
+
 let forms;
 if (forms === undefined) {
     console.log('reading new info');
@@ -47,6 +54,19 @@ app.get('/api/forms', (req, res) => {
     });
 
     res.send(results);
+})
+
+app.post('/api/form/submit',(req,res)=>{
+    console.log("/api/form/submit")
+    
+
+    //client.set('form:'+req.body.First_Name, JSON.stringify(req.body));
+
+    client.rpush(['form:'+req.body.First_Name, JSON.stringify(req.body)], function(err, reply) {
+        console.log(reply); //prints 2
+    });
+
+    res.send({'message':'فرم شما ثبت شد'})
 })
 
 

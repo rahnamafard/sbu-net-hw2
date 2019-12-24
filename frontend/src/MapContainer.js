@@ -21,7 +21,7 @@ export class MapContainer extends React.Component {
         super(props);
         this.state = {
         }
-        console.log(typeof this.state.lat)
+        // console.log(typeof this.state.lat)
     }
 
     render() {

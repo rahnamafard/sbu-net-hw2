@@ -1,5 +1,5 @@
-# sbu-net-hw2
-Homework 2 - Form generator
+# Homework 2
+Form generator
 
 * Get start with `npm install` in "backend" & "frontend" directories to install dependencies.
 * This project uses these main packages:

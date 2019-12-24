@@ -168,7 +168,6 @@ class _Map extends React.Component {
   
   
   //render(<App />, document.getElementById('root'));
-  const onSubmit = ({formData}, e) => console.log("Data submitted: ",  formData);
 
 class myForm extends React.Component {
     constructor(props)
@@ -179,13 +178,18 @@ class myForm extends React.Component {
             input_object: this.props.objectInput
         }
     }
+    _onSubmit = ({formData}, e) => {
+        console.log("Data submitted: ",  formData);
+        this.props.onSubmit(formData);
+    } 
+
 
     render() {
         return (
             <Form 
             schema={schema}
             fields={fields} 
-            onSubmit={onSubmit}
+            onSubmit={this._onSubmit}
             uiSchema={uiSchema}
             />
         );

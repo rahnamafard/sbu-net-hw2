@@ -107,7 +107,7 @@ class DropDown extends Component{
 
   render(){
     const selectedOption  = this.state.selectedOption;
-    console.log(" labelllls" ,this.options);
+    // console.log(" labelllls" ,this.options);
    return(  
    // <h3>{this.props.name}</h3>
    <div> 
@@ -177,14 +177,14 @@ class myForm extends React.Component {
         converted_schema = schemaMaker(object_input);
         schema = converted_schema;
 
-        console.log("input  " ,input);
+        // console.log("input  " ,input);
         this.state = {
             input_object: this.props.objectInput
         }
     }
 
     _onSubmit = ({formData}, e) => {
-        console.log("Data submitted: ",  formData);
+        // console.log("Data submitted: ",  formData);
         this.props.onSubmit(formData);
     } 
 

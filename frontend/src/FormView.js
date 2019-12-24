@@ -36,8 +36,6 @@ class FormView extends Component {
                 new_form_info.title = form.title;
                 new_form_info.fields = form.fields;
 
-                console.log(new_form_info);
-
                 this.setState({
                     formInfo: new_form_info,
                     formReady: true
@@ -55,10 +53,11 @@ class FormView extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(json)
-        }).then((success) => {
-            console.log(success);
-        }, (error) => {
-            console.log(error);
+        })
+        .then((results) => results.json(), () => alert("ERROR!"))
+        .then((json) => {
+            alert(json.message); // shows success message
+            window.location.href = "../"; // redirects to ./
         });
     }
 
@@ -72,8 +71,6 @@ class FormView extends Component {
         }
         else // Forms loaded
         {
-            //const fields = this.state.fields;
-
             return (
                 <Container>
                     <Button variant="contained" color="primary" href="/">

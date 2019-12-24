@@ -1,14 +1,10 @@
-import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from "react";
-import { render } from "react-dom";
 import Select from "react-select";
-//import schemaMaker from './SchemaConverter';
 import Form from "react-jsonschema-form";
 
 import {MapContainer} from './MapContainer'; 
 
-import {GoogleMap} from "react-google-maps"
 
 function type_finder(raw_type,options){
   if(options !== undefined)
@@ -27,6 +23,9 @@ function type_finder(raw_type,options){
 
         case "Location":
             return { type : "object"};
+
+        default:
+            return { type: raw_type};
         }
 
 }

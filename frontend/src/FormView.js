@@ -31,7 +31,7 @@ class FormView extends Component {
         fetch(`http://localhost:3001/api/forms/${fid}`)
             .then(results => results.json())
             .then(form => {
-                let new_form_info = {...this.state.formInfo};
+                let new_form_info = { ...this.state.formInfo };
                 new_form_info.id = form.id;
                 new_form_info.title = form.title;
                 new_form_info.fields = form.fields;
@@ -48,12 +48,23 @@ class FormView extends Component {
 
 
     handleSubmit(json) {
-        // TODO: Post to server
+        fetch('https://localhost:3001/api/form/submit', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(json)
+        }).then((success) => {
+            console.log(success);
+        }, (error) => {
+            console.log(error);
+        });
     }
 
 
     render() {
-        if(!this.state.formReady) // Loading Progress Bar
+        if (!this.state.formReady) // Loading Progress Bar
         {
             return (
                 <LinearProgress />
@@ -62,11 +73,11 @@ class FormView extends Component {
         else // Forms loaded
         {
             //const fields = this.state.fields;
-            
+
             return (
                 <Container>
                     <Button variant="contained" color="primary" href="/">
-                        « صفحه اصلی 
+                        « صفحه اصلی
                     </Button>
 
                     <FormGen objectInput={this.state.formInfo} onSubmit={this.handleSubmit} />

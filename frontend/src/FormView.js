@@ -48,7 +48,7 @@ class FormView extends Component {
 
 
     handleSubmit(json) {
-        fetch('https://localhost:3001/api/form/submit', {
+        fetch('http://localhost:3001/api/form/submit', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

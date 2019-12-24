@@ -49,6 +49,13 @@ app.get('/api/forms', (req, res) => {
     res.send(results);
 })
 
+app.post('/api/form/submit',(req,res)=>{
+    console.log("/api/form/submit")
+    console.log(req.body)
+
+    res.send({'message':'فرم شما ثبت شد'})
+})
+
 
 app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${port}!`));
 

@@ -5,6 +5,7 @@ Homework 2 - Form generator
 * This project uses these main packages:
     - NodeJS
     - ExpressJS
+    - Redis
     - ReactJS
     - Google Map API
     - Material UI

@@ -31,8 +31,8 @@
                     "title" : "مکان پایگاه" , 
                     "type" : "Location" , 
                     "options" : [
-                        {"label" : "Base1" , "value" : {"lat" : "1.2" , "long": "3.2"} }, 
-                        {"label" : "Base2" , "value" : {"lat" : "2.3" , "long" : "1.434" }}
+                        {"label" : "پایگاه اول" , "value" : {"lat" : "1.2" , "long": "3.2"} }, 
+                        {"label" : "پایگاه دوم" , "value" : {"lat" : "2.3" , "long" : "1.434" }}
                     ] 
                 } 
             ] 
